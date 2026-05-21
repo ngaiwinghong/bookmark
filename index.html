@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>reMarkable Reading Bookmarks</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --tech: #e8f0ff;
+      --tech-border: #9bbcff;
+      --design: #f0ecff;
+      --design-border: #b9a7ff;
+      --creative: #fff1df;
+      --creative-border: #ffc078;
+      --photo: #e9f7ef;
+      --photo-border: #8fd19e;
+      --chinese: #fff0f0;
+      --chinese-border: #ff9f9f;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f7f6f2;
+      color: #111;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 36px;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 36px;
+      font-size: 16px;
+      max-width: 720px;
+      line-height: 1.5;
+    }
+
+    h2 {
+      margin-top: 44px;
+      margin-bottom: 16px;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      min-height: 132px;
+      padding: 18px;
+      border-radius: 18px;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+      border-color: rgba(0,0,0,0.18);
+    }
+
+    .tech { background: var(--tech); border-left: 6px solid var(--tech-border); }
+    .design { background: var(--design); border-left: 6px solid var(--design-border); }
+    .creative { background: var(--creative); border-left: 6px solid var(--creative-border); }
+    .photo { background: var(--photo); border-left: 6px solid var(--photo-border); }
+    .chinese { background: var(--chinese); border-left: 6px solid var(--chinese-border); }
+
+    .favicon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.65);
+      padding: 7px;
+      object-fit: contain;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+    }
+
+    .content {
+      min-width: 0;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 750;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+
+    .url {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .desc {
+      font-size: 14px;
+      line-height: 1.45;
+      color: #444;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.58);
+      font-size: 12px;
+      color: #444;
+    }
+
+    .footer {
+      margin-top: 60px;
+      color: #888;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <h1>reMarkable Reading Hub</h1>
+  <div class="subtitle">
+    A visual bookmark page for long-form reading. Each card uses the website favicon for faster recognition, with category colours for scanning.
+  </div>
+
+  <h2>Tech & Strategy</h2>
+  <div class="grid">
+    <a class="card tech" href="https://stratechery.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=stratechery.com&sz=128" alt="Stratechery favicon" />
+      <div class="content">
+        <div class="title">Stratechery</div>
+        <div class="url">stratechery.com</div>
+        <div class="desc">Apple, AI, platforms, subscriptions and media strategy.</div>
+        <span class="tag">Tech strategy</span>
+      </div>
+    </a>
+
+    <a class="card tech" href="https://www.theverge.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=theverge.com&sz=128" alt="The Verge favicon" />
+      <div class="content">
+        <div class="title">The Verge</div>
+        <div class="url">theverge.com</div>
+        <div class="desc">Tech, gadgets, AI, internet culture and product commentary.</div>
+        <span class="tag">Tech news</span>
+      </div>
+    </a>
+
+    <a class="card tech" href="https://www.pingwest.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=pingwest.com&sz=128" alt="PingWest favicon" />
+      <div class="content">
+        <div class="title">PingWest 品玩</div>
+        <div class="url">pingwest.com</div>
+        <div class="desc">China tech, AI, media and startup analysis.</div>
+        <span class="tag">China tech</span>
+      </div>
+    </a>
+
+    <a class="card tech" href="https://www.ifanr.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=ifanr.com&sz=128" alt="ifanr favicon" />
+      <div class="content">
+        <div class="title">愛范兒</div>
+        <div class="url">ifanr.com</div>
+        <div class="desc">Apple, EV, AI and consumer tech news from China.</div>
+        <span class="tag">Consumer tech</span>
+      </div>
+    </a>
+  </div>
+
+  <h2>UX & Design</h2>
+  <div class="grid">
+    <a class="card design" href="https://uxdesign.cc" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=uxdesign.cc&sz=128" alt="UX Collective favicon" />
+      <div class="content">
+        <div class="title">UX Collective</div>
+        <div class="url">uxdesign.cc</div>
+        <div class="desc">UX essays, product thinking and design case studies.</div>
+        <span class="tag">UX essays</span>
+      </div>
+    </a>
+
+    <a class="card design" href="https://www.nngroup.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=nngroup.com&sz=128" alt="NN Group favicon" />
+      <div class="content">
+        <div class="title">NN Group</div>
+        <div class="url">nngroup.com</div>
+        <div class="desc">UX research, usability principles and evidence-based design guidance.</div>
+        <span class="tag">UX research</span>
+      </div>
+    </a>
+
+    <a class="card design" href="https://www.designbetter.co" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=designbetter.co&sz=128" alt="Design Better favicon" />
+      <div class="content">
+        <div class="title">Design Better</div>
+        <div class="url">designbetter.co</div>
+        <div class="desc">Design systems, collaboration, product teams and leadership.</div>
+        <span class="tag">Design leadership</span>
+      </div>
+    </a>
+
+    <a class="card design" href="https://www.figma.com/blog" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=figma.com&sz=128" alt="Figma favicon" />
+      <div class="content">
+        <div class="title">Figma Blog</div>
+        <div class="url">figma.com/blog</div>
+        <div class="desc">Design workflows, product updates, AI and collaboration insights.</div>
+        <span class="tag">Design tools</span>
+      </div>
+    </a>
+
+    <a class="card design" href="https://sspai.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=sspai.com&sz=128" alt="SSPAI favicon" />
+      <div class="content">
+        <div class="title">少数派 SSPAI</div>
+        <div class="url">sspai.com</div>
+        <div class="desc">Productivity, Apple workflows, e-ink devices and digital minimalism.</div>
+        <span class="tag">Workflows</span>
+      </div>
+    </a>
+  </div>
+
+  <h2>Drawing & Creativity</h2>
+  <div class="grid">
+    <a class="card creative" href="https://gurneyjourney.blogspot.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=gurneyjourney.blogspot.com&sz=128" alt="James Gurney favicon" />
+      <div class="content">
+        <div class="title">James Gurney</div>
+        <div class="url">gurneyjourney.blogspot.com</div>
+        <div class="desc">Observation, sketching, painting and visual storytelling.</div>
+        <span class="tag">Art process</span>
+      </div>
+    </a>
+
+    <a class="card creative" href="https://www.proko.com/blog" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=proko.com&sz=128" alt="Proko favicon" />
+      <div class="content">
+        <div class="title">Proko</div>
+        <div class="url">proko.com/blog</div>
+        <div class="desc">Drawing fundamentals, anatomy and artistic practice.</div>
+        <span class="tag">Drawing</span>
+      </div>
+    </a>
+
+    <a class="card creative" href="https://linesandcolors.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=linesandcolors.com&sz=128" alt="Lines and Colors favicon" />
+      <div class="content">
+        <div class="title">Lines and Colors</div>
+        <div class="url">linesandcolors.com</div>
+        <div class="desc">Art discoveries, illustration inspiration and visual references.</div>
+        <span class="tag">Inspiration</span>
+      </div>
+    </a>
+
+    <a class="card creative" href="https://www.themarginalian.org" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=themarginalian.org&sz=128" alt="The Marginalian favicon" />
+      <div class="content">
+        <div class="title">The Marginalian</div>
+        <div class="url">themarginalian.org</div>
+        <div class="desc">Creativity, philosophy, literature and reflective essays.</div>
+        <span class="tag">Creative essays</span>
+      </div>
+    </a>
+  </div>
+
+  <h2>Photography & Cameras</h2>
+  <div class="grid">
+    <a class="card photo" href="https://www.35mmc.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=35mmc.com&sz=128" alt="35mmc favicon" />
+      <div class="content">
+        <div class="title">35mmc</div>
+        <div class="url">35mmc.com</div>
+        <div class="desc">Photography essays, film cameras and personal gear reviews.</div>
+        <span class="tag">Photo essays</span>
+      </div>
+    </a>
+
+    <a class="card photo" href="https://petapixel.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=petapixel.com&sz=128" alt="PetaPixel favicon" />
+      <div class="content">
+        <div class="title">PetaPixel</div>
+        <div class="url">petapixel.com</div>
+        <div class="desc">Photography news, camera reviews and industry coverage.</div>
+        <span class="tag">Camera news</span>
+      </div>
+    </a>
+
+    <a class="card photo" href="https://www.macfilos.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=macfilos.com&sz=128" alt="Macfilos favicon" />
+      <div class="content">
+        <div class="title">Macfilos</div>
+        <div class="url">macfilos.com</div>
+        <div class="desc">Leica, Fuji, Nikon and enthusiast photography writing.</div>
+        <span class="tag">Leica / Fuji</span>
+      </div>
+    </a>
+  </div>
+
+  <h2>Long-form Chinese Reading</h2>
+  <div class="grid">
+    <a class="card chinese" href="https://theinitium.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=theinitium.com&sz=128" alt="Initium favicon" />
+      <div class="content">
+        <div class="title">端傳媒</div>
+        <div class="url">theinitium.com</div>
+        <div class="desc">Long-form journalism, culture, politics and society.</div>
+        <span class="tag">中文長文</span>
+      </div>
+    </a>
+
+    <a class="card chinese" href="https://www.toodaylab.com" target="_blank">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=toodaylab.com&sz=128" alt="Toodaylab favicon" />
+      <div class="content">
+        <div class="title">理想生活實驗室</div>
+        <div class="url">toodaylab.com</div>
+        <div class="desc">Design, lifestyle and creative culture observation.</div>
+        <span class="tag">生活設計</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="footer">
+    Tip: Host this page on GitHub Pages / Netlify, then bookmark it in Chrome. Open any article and use the reMarkable extension to send it to your device.
+  </div>
+</body>
+</html>
